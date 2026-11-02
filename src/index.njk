@@ -1,0 +1,60 @@
+---
+layout: base.njk
+bodyClass: page-home
+description: Adrian Dumitru, backend engineer in Lugano. Java, Spring Boot, Kafka and Kubernetes. Case studies and notes on how I approach real systems.
+---
+<section class="hero" aria-labelledby="hero-name">
+  <h1 id="hero-name" class="hero-name">Adrian<br>Dumitru</h1>
+  <p class="hero-tagline">{{ site.tagline }}</p>
+  <div class="hero-body">
+    <img class="portrait" src="/assets/img/adrian.jpg" alt="Adrian Dumitru" width="160" height="160">
+    <div>
+      <p>I work in Lugano. For six years I've built the parts of systems that other teams build on: a Kafka event sidecar that carried every event of an enterprise platform, microservice templates that hundreds of developers started from, and a network discovery service at Swisscom that I take from solution design to production.</p>
+      <p>This site keeps the longer version: how I approached real problems, and notes on what I'm building now.</p>
+      <p class="hero-links"><a href="mailto:{{ site.email }}">Email me</a> <a href="/files/Adrian_Dumitru_CV.pdf">Download my CV</a> <a href="{{ site.linkedin }}">LinkedIn</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="block" aria-labelledby="work-title">
+  <h2 id="work-title">Work</h2>
+  <p class="block-intro">Five problems I worked on, told as they happened: what was wrong, what I did, what changed.</p>
+  <ul class="work-list">
+    {% for c in collections.work %}
+    <li>
+      <span class="work-when">{{ c.data.when }}</span>
+      <div>
+        <a class="work-title" href="{{ c.url }}">{{ c.data.title }}</a>
+        <p class="work-sum">{{ c.data.summary }}</p>
+        <p class="work-where">{{ c.data.where }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section id="notes" class="block" aria-labelledby="notes-title">
+  <h2 id="notes-title">Notes</h2>
+  <p class="block-intro">An append-only log of things I've built or figured out. Newest first; the number is the entry's offset in the log.</p>
+  <ol class="log" reversed>
+    {% for n in collections.notes %}
+    <li>
+      <span class="log-offset" aria-hidden="true">{{ collections.notes.length - loop.index }}</span>
+      <div>
+        <time class="log-date" datetime="{{ n.date | isoDate }}">{{ n.date | readableDate }}</time>
+        <a class="log-title" href="{{ n.url }}">{{ n.data.title }}</a>
+        <p class="log-sum">{{ n.data.summary }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="block" aria-labelledby="stack-title">
+  <h2 id="stack-title">What I work with</h2>
+  <dl class="stack">
+    <div><dt>Every day</dt><dd>Java, Spring Boot, Kafka, Kubernetes, PostgreSQL, GitLab CI/CD</dd></div>
+    <div><dt>Often</dt><dd>Quarkus, Avro and Schema Registry, Docker, AWS, Oracle, Keycloak, OAuth2, SNMP</dd></div>
+    <div><dt>Languages I speak</dt><dd>Italian and Romanian (native), English</dd></div>
+  </dl>
+</section>

@@ -1,0 +1,17 @@
+---
+layout: base.njk
+bodyClass: page-note
+---
+<article class="note">
+  <header class="note-head">
+    <p class="note-meta"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>, {{ content | readingTime }} min read</p>
+    <h1>{{ title }}</h1>
+    {% if summary %}<p class="lede">{{ summary }}</p>{% endif %}
+  </header>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  <footer class="note-foot">
+    <p>Questions or a similar problem to solve? <a href="mailto:{{ site.email }}">Write to me</a>.</p>
+  </footer>
+</article>

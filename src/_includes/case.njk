@@ -1,0 +1,24 @@
+---
+layout: base.njk
+bodyClass: page-case
+---
+<article class="case">
+  <header class="case-head">
+    <p class="case-where">{{ where }}, {{ when }}</p>
+    <h1>{{ title }}</h1>
+    <p class="lede">{{ summary }}</p>
+    <dl class="facts">
+      <div><dt>Role</dt><dd>{{ role }}</dd></div>
+      <div><dt>Stack</dt><dd>{{ stack }}</dd></div>
+    </dl>
+  </header>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  <nav class="case-nav" aria-label="More work">
+    {% set i = 0 %}
+    {% for c in collections.work %}{% if c.url == page.url %}{% set i = loop.index0 %}{% endif %}{% endfor %}
+    {% set nxt = collections.work[i + 1] or collections.work[0] %}
+    <p>Next case: <a href="{{ nxt.url }}">{{ nxt.data.title }}</a></p>
+  </nav>
+</article>

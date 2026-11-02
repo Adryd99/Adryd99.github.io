@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} – {% endif %}{{ site.name }}</title>
+  <meta name="description" content="{{ description or summary or site.tagline }}">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or summary or site.tagline }}">
+  <meta property="og:type" content="{% if layout == 'note.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">{% endif %}
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body class="{{ bodyClass }}">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <a class="wordmark" href="/">{{ site.name }}</a>
+    <nav aria-label="Main">
+      <a href="/#work"{% if layout == 'case.njk' %} aria-current="true"{% endif %}>Work</a>
+      <a href="/#notes"{% if layout == 'note.njk' %} aria-current="true"{% endif %}>Notes</a>
+      <a href="/files/Adrian_Dumitru_CV.pdf">CV</a>
+    </nav>
+  </header>
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  <footer class="colophon">
+    <p class="colophon-line">Write to me at <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    <ul class="elsewhere">
+      <li><a href="{{ site.linkedin }}">LinkedIn</a></li>
+      <li><a href="{{ site.github }}">GitHub</a></li>
+      <li><a href="/files/Adrian_Dumitru_CV.pdf">CV (PDF)</a></li>
+      <li><a href="/files/Adrian_Dumitru_Profile_EN.pdf">Profile deck (PDF)</a></li>
+    </ul>
+    <p class="fine">{{ site.location }}</p>
+  </footer>
+</body>
+</html>
